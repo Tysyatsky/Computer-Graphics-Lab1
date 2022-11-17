@@ -98,14 +98,41 @@ int main()
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
     float vertices[] = {
-         0.5f,  0.5f, 0.0f,  // top right
-         0.5f, -0.5f, 0.0f,  // bottom right
-        -0.5f, -0.5f, 0.0f,  // bottom left
-        -0.5f,  0.5f, 0.0f   // top left 
+         -0.4f, 0.2f, 0.0f,  // head 2 0
+        -0.4f, -0.2f, 0.0f,  // head 3 1
+        -0.7f,  -0.2f, 0.0f, // head 1 2
+        -0.7f,  0.2f, 0.0f, // head 4 3
+
+        -0.7f, 0.6f, 0.0f, // head piece left 4
+        -0.5f, 0.4f, 0.0f, // 5
+
+        -0.7f,  0.2f, 0.0f, // head piece right 6
+        -0.4f, 0.5f, 0.0f, // 7
+        -0.4f, 0.2f, 0.0f, // 8
+
+        -0.4f, -0.6f, 0.0f, // 9
+        -0.4f, 0.0f, 0.0f, // 10
+        0.0f, 0.0f, 0.0f, // 11
+
+        0.0f, 0.0f, 0.0f, // 12
+        -0.3f, -0.3f, 0.0f,// 13
+        0.3f, -0.3f, 0.0f, // 14
+
+        0.0f, 0.0f, 0.0f, // 15
+        0.4f, -0.6f, 0.0f, // 16
+        0.4f, 0.0f, 0.0f, // 17
+        
+        0.5f, 0.3f, 0.0f, // 18
+        0.8f, 0.5f, 0.0f, // 19
+        0.7f, 0.2f, 0.0f, // 20
+        0.4f, 0.0f, 0.0f  // 21
+
     };
     unsigned int indices[] = {  // note that we start from 0!
-        0, 1, 3,  // first Triangle
-        1, 2, 3   // second Triangle
+        0, 1, 3,  // head  1
+        1, 2, 3,   // head 2
+        18, 19, 20,
+        18, 21, 20
     };
     unsigned int VBO, VAO, EBO;
     glGenVertexArrays(1, &VAO);
@@ -154,7 +181,8 @@ int main()
         glUseProgram(shaderProgram);
         glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
         //glDrawArrays(GL_TRIANGLES, 0, 6);
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        glDrawElements(GL_TRIANGLES, 12, GL_UNSIGNED_INT, 0);
+        glDrawArrays(GL_TRIANGLES, 0, 18);
         // glBindVertexArray(0); // no need to unbind it every time 
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
